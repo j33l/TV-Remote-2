@@ -21,6 +21,9 @@ namespace TVRemote2
         private int contras = 50;
         private string onlineStreamingChannel = null; // Netflix, Hulu, etc
 
+        public bool isSetting = false;
+        public bool isSmartMenu = false;
+
 
         /*
         * setters
@@ -193,67 +196,117 @@ namespace TVRemote2
                 case "6":
                     this.changeMute();
                     break;
-                //case "7":
-                //    this.settingButtonReceiver();
-                //    break;
-                //case "8":
-                //    break;
+                case "7":
+                    this.isSetting = true;
+                    break;
+                case "70":
+                    if (this.isSetting)
+                    {
+                        this.changeBrightness();
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "71":
+                    if (this.isSetting)
+                    {
+                        this.changeBrightness(false);
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "72":
+                    if (this.isSetting)
+                    {
+                        this.changeContras();
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "73":
+                    if (this.isSetting)
+                    {
+                        this.changeContras(false);
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "74":
+                    if (this.isSetting)
+                    {
+                        this.isSetting = false;
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "8":
+                    isSmartMenu = true;
+                    break;
+                case "80":
+                    if(this.isSmartMenu)
+                    {
+                        this.setOnlineStreamingChannel("Netflix");
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "81":
+                    if (this.isSmartMenu)
+                    {
+                        this.setOnlineStreamingChannel("Hulu");
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "82":
+                    if (this.isSmartMenu)
+                    {
+                        this.setOnlineStreamingChannel("Prime Video");
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "83":
+                    if (this.isSmartMenu)
+                    {
+                        this.setOnlineStreamingChannel("YouTube");
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
+                case "84":
+                    if (this.isSmartMenu)
+                    {
+                        isSmartMenu = false;
+                    }
+                    else
+                    {
+                        goto default;
+                    }
+                    break;
                 default:
                     Console.WriteLine("Invalid command.");
                     break;
             }
 
-        }
-
-        public void settingButtonReceiver(string settingButton, ref bool isSetting)
-        {
-            
-            switch (settingButton)
-            {
-                case "0":
-                    this.changeBrightness();
-                    break;
-                case "1":
-                    this.changeBrightness(false);
-                    break;
-                case "2":
-                    this.changeContras();
-                    break;
-                case "3":
-                    this.changeContras(false);
-                    break;
-                case "4":
-                    isSetting = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid command.");
-                    break;
-            }
-        }
-
-        public void smartMenuButtonReceiver(string smartMenuButton, ref bool isSmartMenu)
-        {
-            switch (smartMenuButton)
-            {
-                case "0":
-                    this.setOnlineStreamingChannel("Netflix");
-                    break;
-                case "1":
-                    this.setOnlineStreamingChannel("Hulu");
-                    break;
-                case "2":
-                    this.setOnlineStreamingChannel("Prime Video");
-                    break;
-                case "3":
-                    this.setOnlineStreamingChannel("YouTube");
-                    break;
-                case "4":
-                    isSmartMenu = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid command.");
-                    break;
-            }
         }
     }
 }

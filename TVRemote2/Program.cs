@@ -11,7 +11,7 @@ namespace TVRemote2
         static void getScreenStatus(Screen screen)
         {
             Console.WriteLine("TV Screen State: ");
-            Console.WriteLine($"#########################\n# Model: {screen.getModel()} \t\t#\n# Power: {screen.getPower()} \t\t#\n# Volume: {screen.getCurrentVolume()} \t\t#\n# Channel: {screen.getCurrentChannel()} \t\t#\n# Mute: {screen.getMute()} \t\t#\n# Brightness: {screen.getBrightness()} \t#\n# Contras: {screen.getContras()} \t\t#\n#########################");
+            Console.WriteLine($"#########################\n# Model: {screen.getModel()} \t\t#\n# Power: {screen.getPower()} \t\t#\n# Volume: {screen.getCurrentVolume()} \t\t#\n# Channel: {screen.getCurrentChannel()} \t\t#\n# Mute: {screen.getMute()} \t\t#\n# Settings: {screen.isSetting} \t\t#\n# SmartMenu: {screen.isSmartMenu} \t\t#\n# Brightness: {screen.getBrightness()} \t#\n# Contras: {screen.getContras()} \t\t#\n#########################");
         }
 
         static void Main(String[] args)
