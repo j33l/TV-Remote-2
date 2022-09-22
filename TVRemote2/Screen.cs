@@ -193,63 +193,62 @@ namespace TVRemote2
                 case "6":
                     this.changeMute();
                     break;
-                case "7":
-                    bool isSetting = true;
-                    while (isSetting)
-                    {
-                        Console.WriteLine("Enter your command: (0:increase brightness, 1:decrease brightness, 2:increase contras, 3:decrease contras, 4:back)");
-                        string settingButton = Console.ReadLine();
-                        switch (settingButton)
-                        {
-                            case "0":
-                                this.changeBrightness();
-                                break;
-                            case "1":
-                                this.changeBrightness(false);
-                                break;
-                            case "2":
-                                this.changeContras();
-                                break;
-                            case "3":
-                                this.changeContras(false);
-                                break;
-                            case "4":
-                                isSetting = false;
-                                break;
-                            default:
-                                Console.WriteLine("Invalid command.");
-                                break;
-                        }
-                    }
+                //case "7":
+                //    this.settingButtonReceiver();
+                //    break;
+                //case "8":
+                //    break;
+                default:
+                    Console.WriteLine("Invalid command.");
                     break;
-                case "8":
-                    bool isSmartMenu = true;
-                    while (isSmartMenu)
-                    {
-                        Console.WriteLine("Enter your command: (0:Netflix, 1:Hulu, 2:Prime Video, 3:YouTube, 4:back)");
-                        string settingButton = Console.ReadLine();
-                        switch (settingButton)
-                        {
-                            case "0":
-                                this.setOnlineStreamingChannel("Netflix");
-                                break;
-                            case "1":
-                                this.setOnlineStreamingChannel("Hulu");
-                                break;
-                            case "2":
-                                this.setOnlineStreamingChannel("Prime Video");
-                                break;
-                            case "3":
-                                this.setOnlineStreamingChannel("YouTube");
-                                break;
-                            case "4":
-                                isSmartMenu = false;
-                                break;
-                            default:
-                                Console.WriteLine("Invalid command.");
-                                break;
-                        }
-                    }
+            }
+
+        }
+
+        public void settingButtonReceiver(string settingButton, ref bool isSetting)
+        {
+            
+            switch (settingButton)
+            {
+                case "0":
+                    this.changeBrightness();
+                    break;
+                case "1":
+                    this.changeBrightness(false);
+                    break;
+                case "2":
+                    this.changeContras();
+                    break;
+                case "3":
+                    this.changeContras(false);
+                    break;
+                case "4":
+                    isSetting = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid command.");
+                    break;
+            }
+        }
+
+        public void smartMenuButtonReceiver(string smartMenuButton, ref bool isSmartMenu)
+        {
+            switch (smartMenuButton)
+            {
+                case "0":
+                    this.setOnlineStreamingChannel("Netflix");
+                    break;
+                case "1":
+                    this.setOnlineStreamingChannel("Hulu");
+                    break;
+                case "2":
+                    this.setOnlineStreamingChannel("Prime Video");
+                    break;
+                case "3":
+                    this.setOnlineStreamingChannel("YouTube");
+                    break;
+                case "4":
+                    isSmartMenu = false;
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
