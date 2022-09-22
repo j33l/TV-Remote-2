@@ -13,7 +13,7 @@ namespace TVRemote2
         *  screen state
         */
         private String model;
-        private bool power = true;
+        private bool power = false;
         private int currentVolume = 50; // 0 to 100
         private int currentChannel = 0;
         private bool mute = false;
@@ -124,11 +124,9 @@ namespace TVRemote2
         }
 
 
-
         /*
         * getters
         */
-
         public bool getPower()
         {
             return this.power;
@@ -165,6 +163,99 @@ namespace TVRemote2
         }
 
 
+        /*
+         * TV Remote receiver
+         */
+        public void receiver(string button)
+        {
+            switch (button)
+            {
+                case "0":
+                    this.changePower();
+                    break;
+                case "1":
+                    this.changeVolume();
+                    break;
+                case "2":
+                    this.changeVolume(false);
+                    break;
+                case "3":
+                    this.changeChannel();
+                    break;
+                case "4":
+                    this.changeChannel(false);
+                    break;
+                case "5":
+                    Console.WriteLine("Enter your channel number: (0-100)");
+                    string channel = Console.ReadLine();
+                    this.setChannel(Int32.Parse(channel));
+                    break;
+                case "6":
+                    this.changeMute();
+                    break;
+                case "7":
+                    bool isSetting = true;
+                    while (isSetting)
+                    {
+                        Console.WriteLine("Enter your command: (0:increase brightness, 1:decrease brightness, 2:increase contras, 3:decrease contras, 4:back)");
+                        string settingButton = Console.ReadLine();
+                        switch (settingButton)
+                        {
+                            case "0":
+                                this.changeBrightness();
+                                break;
+                            case "1":
+                                this.changeBrightness(false);
+                                break;
+                            case "2":
+                                this.changeContras();
+                                break;
+                            case "3":
+                                this.changeContras(false);
+                                break;
+                            case "4":
+                                isSetting = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid command.");
+                                break;
+                        }
+                    }
+                    break;
+                case "8":
+                    bool isSmartMenu = true;
+                    while (isSmartMenu)
+                    {
+                        Console.WriteLine("Enter your command: (0:Netflix, 1:Hulu, 2:Prime Video, 3:YouTube, 4:back)");
+                        string settingButton = Console.ReadLine();
+                        switch (settingButton)
+                        {
+                            case "0":
+                                this.setOnlineStreamingChannel("Netflix");
+                                break;
+                            case "1":
+                                this.setOnlineStreamingChannel("Hulu");
+                                break;
+                            case "2":
+                                this.setOnlineStreamingChannel("Prime Video");
+                                break;
+                            case "3":
+                                this.setOnlineStreamingChannel("YouTube");
+                                break;
+                            case "4":
+                                isSmartMenu = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid command.");
+                                break;
+                        }
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid command.");
+                    break;
+            }
+        }
     }
 }
 

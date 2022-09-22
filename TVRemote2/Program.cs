@@ -25,11 +25,11 @@ namespace TVRemote2
             /*
              * Interacting with Remote
              */
-            while (screen.getPower())
+            do
             {
                 remote.showButtons();
                 getScreenStatus(screen);
-            }
+            } while (screen.getPower());
 
         }
 
