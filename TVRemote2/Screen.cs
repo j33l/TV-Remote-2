@@ -14,11 +14,12 @@ namespace TVRemote2
         */
         private String model;
         private bool power = true;
-        private int currentVolume; // 0 to 100
-        private int currentChannel;
-        private bool mute;
+        private int currentVolume = 50; // 0 to 100
+        private int currentChannel = 0;
+        private bool mute = false;
         private int brightness = 50;
         private int contras = 50;
+        private string onlineStreamingChannel = null; // Netflix, Hulu, etc
 
 
         /*
@@ -54,6 +55,7 @@ namespace TVRemote2
                 if (this.currentChannel < 100)
                 {
                     this.currentChannel++;
+                    this.onlineStreamingChannel = null;
                 }
             }
             else
@@ -61,6 +63,7 @@ namespace TVRemote2
                 if (this.currentChannel > 0)
                 {
                     this.currentChannel--;
+                    this.onlineStreamingChannel = null;
                 }
             }
         }
@@ -70,7 +73,13 @@ namespace TVRemote2
             if (newChannel >= 0 && newChannel <= 100)
             {
                 this.currentChannel = newChannel;
+                this.onlineStreamingChannel = null;
             }
+        }
+
+        public void setOnlineStreamingChannel(string channel)
+        {
+            this.onlineStreamingChannel = channel;
         }
 
         public void changeMute()
@@ -115,8 +124,6 @@ namespace TVRemote2
         }
 
 
-        // smart menu
-
 
         /*
         * getters
@@ -142,9 +149,9 @@ namespace TVRemote2
             return this.model;
         }
 
-        public int getCurrentChannel()
+        public string getCurrentChannel()
         {
-            return this.currentChannel;
+            return this.onlineStreamingChannel != null ? this.onlineStreamingChannel : this.currentChannel.ToString();
         }
 
         public int getBrightness()
@@ -157,8 +164,6 @@ namespace TVRemote2
             return this.contras;
         }
 
-        // smart menu
-        
 
     }
 }

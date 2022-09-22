@@ -85,6 +85,33 @@ namespace TVRemote2
                     }
                     break;
                 case "8":
+                    bool isSmartMenu = true;
+                    while (isSmartMenu)
+                    {
+                        Console.WriteLine("Enter your command: (0:Netflix, 1:Hulu, 2:Prime Video, 3:YouTube, 4:back)");
+                        string settingButton = Console.ReadLine();
+                        switch (settingButton)
+                        {
+                            case "0":
+                                this.screen.setOnlineStreamingChannel("Netflix");
+                                break;
+                            case "1":
+                                this.screen.setOnlineStreamingChannel("Hulu");
+                                break;
+                            case "2":
+                                this.screen.setOnlineStreamingChannel("Prime Video");
+                                break;
+                            case "3":
+                                this.screen.setOnlineStreamingChannel("YouTube");
+                                break;
+                            case "4":
+                                isSmartMenu = false;
+                                break;
+                            default:
+                                Console.WriteLine("Invalid command.");
+                                break;
+                        }
+                    }
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
