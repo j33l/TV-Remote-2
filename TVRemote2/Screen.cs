@@ -13,6 +13,12 @@ namespace TVRemote2
         *  screen state
         */
         private String model;
+        //public String Model
+        //{
+        //    get => this.Model;
+        //    set { this.Model = value; }
+        //}
+
         private bool power = false;
         private int currentVolume = 50; // 0 to 100
         private int currentChannel = 0;
@@ -24,13 +30,26 @@ namespace TVRemote2
         public bool isSetting = false;
         public bool isSmartMenu = false;
 
+        private bool isError = false;
+        public bool IsError
+        {
+            get => this.isError;
+            set => this.isError = value;
+        }
+
+
 
         /*
-        * setters
-        */
+         * setters
+         */
         public void changePower()
         {
             this.power = !this.power;
+        }
+
+        public string getModel()
+        {
+            return this.model;
         }
 
         public void changeVolume(bool increase = true)
@@ -145,10 +164,7 @@ namespace TVRemote2
             return this.currentVolume;
         }
 
-        public String getModel()
-        {
-            return this.model;
-        }
+        
 
         public string getCurrentChannel()
         {
@@ -304,6 +320,7 @@ namespace TVRemote2
                     break;
                 default:
                     Console.WriteLine("Invalid command.");
+                    this.IsError = true;
                     break;
             }
 
