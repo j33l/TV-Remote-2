@@ -12,13 +12,28 @@ namespace TVRemote2
         {
             if(screen.IsError)
             {
-                Console.BackgroundColor = ConsoleColor.Red;
-                Console.ForegroundColor = ConsoleColor.White;
+                changeConsoleColor(screen.IsError);
             }
             
             Console.WriteLine("TV Screen State: ");
             Console.WriteLine($"#########################\n# Model: {screen.getModel()} \t\t#\n# Power: {screen.getPower()} \t\t#\n# Volume: {screen.getCurrentVolume()} \t\t#\n# Channel: {screen.getCurrentChannel()} \t\t#\n# Mute: {screen.getMute()} \t\t#\n# Settings: {screen.isSetting} \t\t#\n# SmartMenu: {screen.isSmartMenu} \t\t#\n# Brightness: {screen.getBrightness()} \t#\n# Contras: {screen.getContras()} \t\t#\n#########################");
         }
+
+        static void changeConsoleColor(bool isError)
+        {
+            if(isError)
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+        }
+
+        
 
         static void Main(String[] args)
         {
@@ -41,8 +56,7 @@ namespace TVRemote2
 
                 // normalizing after Error
                 screen.IsError = false;
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
+                changeConsoleColor(false);
 
 
             } while (screen.getPower());
