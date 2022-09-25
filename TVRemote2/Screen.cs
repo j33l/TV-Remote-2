@@ -8,177 +8,165 @@ namespace TVRemote2
             this.model = model;
         }
 
+        ~Screen()
+        {
+            Console.WriteLine("Turning Off...");
+        }
+
 
         /*
         *  screen state
         */
         private String model;
-        //public String Model
-        //{
-        //    get => this.Model;
-        //    set { this.Model = value; }
-        //}
+        public String Model
+        {
+            get => this.model;
+        }
+
 
         private bool power = false;
-        private int currentVolume = 50; // 0 to 100
-        private int currentChannel = 0;
-        private bool mute = false;
-        private int brightness = 50;
-        private int contras = 50;
-        private string onlineStreamingChannel = null; // Netflix, Hulu, etc
+        public bool Power
+        {
+            get => this.power;
+            set => this.power = value;
+        }
+        public void changePower()
+        {
+            this.Power = !this.Power;
+        }
 
-        public bool isSetting = false;
-        public bool isSmartMenu = false;
+
+        private int currentVolume = 50; // 0 to 100
+        public int CurrentVolume
+        {
+            get => this.currentVolume;
+            set => this.currentVolume = value;
+        }
+        public void changeVolume(bool increase = true)
+        {
+            if (increase && this.CurrentVolume < 100)
+            {
+                this.CurrentVolume++;
+            }
+            else if (this.CurrentVolume > 0)
+            {
+                this.CurrentVolume--;
+            }
+        }
+
+
+        private int currentChannel = 0;
+        public int CurrentChannel
+        {
+            get => this.currentChannel;
+            set => this.currentChannel = value;
+        }
+        public void changeChannel(bool increase = true)
+        {
+            if (increase && this.CurrentChannel < 100)
+            {
+                this.CurrentChannel++;
+                this.OnlineStreamingChannel = null;
+            }
+            else if (!increase && this.CurrentChannel > 0)
+            {
+                this.CurrentChannel--;
+                this.OnlineStreamingChannel = null;
+            }
+        }
+        public void setChannel(int newChannel)
+        {
+            if (newChannel >= 0 && newChannel <= 100)
+            {
+                this.CurrentChannel = newChannel;
+                this.OnlineStreamingChannel = null;
+            }
+        }
+        public string getCurrentChannel()
+        {
+            return this.OnlineStreamingChannel != null ? this.onlineStreamingChannel : this.currentChannel.ToString();
+        }
+
+
+        private bool mute = false;
+        public bool Mute
+        {
+            get => this.mute;
+            set => this.mute = value;
+        }
+        public void changeMute()
+        {
+            this.Mute = !this.Mute;
+        }
+
+
+        private int brightness = 50;
+        public int Brightness
+        {
+            get => this.brightness;
+            set => this.brightness = value;
+        }
+        public void changeBrightness(bool increase = true)
+        {
+            if (increase && this.Brightness < 100)
+            {
+                this.Brightness++;
+            }
+            else if (!increase && this.Brightness > 0)
+            {
+                this.Brightness--;
+            }
+        }
+
+
+        private int contras = 50;
+        public int Contras
+        {
+            get => this.contras;
+            set => this.contras = value;
+        }
+        public void changeContras(bool increase = true)
+        {
+            if (increase && this.Contras < 100)
+            {
+                this.Contras++;
+            }
+            else if (!increase && this.Contras > 0)
+            {
+                this.Contras--;
+            }
+        }
+
+
+        private string onlineStreamingChannel = null; // Netflix, Hulu, etc
+        public string OnlineStreamingChannel
+        {
+            get => this.onlineStreamingChannel;
+            set => this.onlineStreamingChannel = value;
+        }
+
+
+        private bool isSetting = false;
+        public bool IsSetting
+        {
+            get => this.isSetting;
+            set => this.isSetting = value;
+        }
+
+
+        private bool isSmartMenu = false;
+        public bool IsSmartMenu
+        {
+            get => this.isSmartMenu;
+            set => this.isSmartMenu = value;
+        }
+
 
         private bool isError = false;
         public bool IsError
         {
             get => this.isError;
             set => this.isError = value;
-        }
-
-
-
-        /*
-         * setters
-         */
-        public void changePower()
-        {
-            this.power = !this.power;
-        }
-
-        public string getModel()
-        {
-            return this.model;
-        }
-
-        public void changeVolume(bool increase = true)
-        {
-            if (increase)
-            {
-                if (this.currentVolume < 100)
-                {
-                    this.currentVolume++;
-                }
-            }
-            else
-            {
-                if (this.currentVolume > 0)
-                {
-                    this.currentVolume--;
-                }
-            }
-        }
-
-        public void changeChannel(bool increase = true)
-        {
-            if (increase)
-            {
-                if (this.currentChannel < 100)
-                {
-                    this.currentChannel++;
-                    this.onlineStreamingChannel = null;
-                }
-            }
-            else
-            {
-                if (this.currentChannel > 0)
-                {
-                    this.currentChannel--;
-                    this.onlineStreamingChannel = null;
-                }
-            }
-        }
-
-        public void setChannel(int newChannel)
-        {
-            if (newChannel >= 0 && newChannel <= 100)
-            {
-                this.currentChannel = newChannel;
-                this.onlineStreamingChannel = null;
-            }
-        }
-
-        public void setOnlineStreamingChannel(string channel)
-        {
-            this.onlineStreamingChannel = channel;
-        }
-
-        public void changeMute()
-        {
-            this.mute = !this.mute;
-        }
-
-        public void changeBrightness (bool increase = true)
-        {
-            if (increase)
-            {
-                if (this.brightness < 100)
-                {
-                    this.brightness++;
-                }
-            }
-            else
-            {
-                if (this.brightness > 0)
-                {
-                    this.brightness--;
-                }
-            }
-        }
-
-        public void changeContras(bool increase = true)
-        {
-            if (increase)
-            {
-                if (this.contras < 100)
-                {
-                    this.contras++;
-                }
-            }
-            else
-            {
-                if (this.contras > 0)
-                {
-                    this.contras--;
-                }
-            }
-        }
-
-
-        /*
-        * getters
-        */
-        public bool getPower()
-        {
-            return this.power;
-        }
-
-        public bool getMute()
-        {
-            return this.mute;
-        }
-
-        public int getCurrentVolume()
-        {
-            return this.currentVolume;
-        }
-
-        
-
-        public string getCurrentChannel()
-        {
-            return this.onlineStreamingChannel != null ? this.onlineStreamingChannel : this.currentChannel.ToString();
-        }
-
-        public int getBrightness()
-        {
-            return this.brightness;
-        }
-
-        public int getContras()
-        {
-            return this.contras;
         }
 
 
@@ -213,10 +201,10 @@ namespace TVRemote2
                     this.changeMute();
                     break;
                 case "7":
-                    this.isSetting = true;
+                    this.IsSetting = true;
                     break;
                 case "70":
-                    if (this.isSetting)
+                    if (this.IsSetting)
                     {
                         this.changeBrightness();
                     }
@@ -226,7 +214,7 @@ namespace TVRemote2
                     }
                     break;
                 case "71":
-                    if (this.isSetting)
+                    if (this.IsSetting)
                     {
                         this.changeBrightness(false);
                     }
@@ -236,7 +224,7 @@ namespace TVRemote2
                     }
                     break;
                 case "72":
-                    if (this.isSetting)
+                    if (this.IsSetting)
                     {
                         this.changeContras();
                     }
@@ -246,7 +234,7 @@ namespace TVRemote2
                     }
                     break;
                 case "73":
-                    if (this.isSetting)
+                    if (this.IsSetting)
                     {
                         this.changeContras(false);
                     }
@@ -256,9 +244,9 @@ namespace TVRemote2
                     }
                     break;
                 case "74":
-                    if (this.isSetting)
+                    if (this.IsSetting)
                     {
-                        this.isSetting = false;
+                        this.IsSetting = false;
                     }
                     else
                     {
@@ -266,12 +254,12 @@ namespace TVRemote2
                     }
                     break;
                 case "8":
-                    isSmartMenu = true;
+                    this.IsSmartMenu = true;
                     break;
                 case "80":
-                    if(this.isSmartMenu)
+                    if(this.IsSmartMenu)
                     {
-                        this.setOnlineStreamingChannel("Netflix");
+                        this.OnlineStreamingChannel = "Netflix";
                     }
                     else
                     {
@@ -279,9 +267,9 @@ namespace TVRemote2
                     }
                     break;
                 case "81":
-                    if (this.isSmartMenu)
+                    if (this.IsSmartMenu)
                     {
-                        this.setOnlineStreamingChannel("Hulu");
+                        this.OnlineStreamingChannel = "Hulu";
                     }
                     else
                     {
@@ -289,9 +277,9 @@ namespace TVRemote2
                     }
                     break;
                 case "82":
-                    if (this.isSmartMenu)
+                    if (this.IsSmartMenu)
                     {
-                        this.setOnlineStreamingChannel("Prime Video");
+                        this.OnlineStreamingChannel = "Prime Video";
                     }
                     else
                     {
@@ -299,9 +287,9 @@ namespace TVRemote2
                     }
                     break;
                 case "83":
-                    if (this.isSmartMenu)
+                    if (this.IsSmartMenu)
                     {
-                        this.setOnlineStreamingChannel("YouTube");
+                        this.OnlineStreamingChannel = "YouTube";
                     }
                     else
                     {
@@ -309,9 +297,9 @@ namespace TVRemote2
                     }
                     break;
                 case "84":
-                    if (this.isSmartMenu)
+                    if (this.IsSmartMenu)
                     {
-                        isSmartMenu = false;
+                        IsSmartMenu = false;
                     }
                     else
                     {

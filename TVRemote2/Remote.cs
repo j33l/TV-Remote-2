@@ -8,7 +8,7 @@ namespace TVRemote2
         
         public Remote(ref Screen screen)
         {
-            this.model = screen.getModel();
+            this.model = screen.Model;
             this.screen = screen;
         }
 
@@ -25,7 +25,7 @@ namespace TVRemote2
             string button = Console.ReadLine();
 
             
-            screen.receiver(button); // just send fictional IR Signal to TV Screen
+            screen.receiver(button); // just sending fictional IR Signal to TV Screen
 
         }
     }

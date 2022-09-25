@@ -16,7 +16,7 @@ namespace TVRemote2
             }
             
             Console.WriteLine("TV Screen State: ");
-            Console.WriteLine($"#########################\n# Model: {screen.getModel()} \t\t#\n# Power: {screen.getPower()} \t\t#\n# Volume: {screen.getCurrentVolume()} \t\t#\n# Channel: {screen.getCurrentChannel()} \t\t#\n# Mute: {screen.getMute()} \t\t#\n# Settings: {screen.isSetting} \t\t#\n# SmartMenu: {screen.isSmartMenu} \t\t#\n# Brightness: {screen.getBrightness()} \t#\n# Contras: {screen.getContras()} \t\t#\n#########################");
+            Console.WriteLine($"#########################\n# Model: {screen.Model} \t\t#\n# Power: {screen.Power} \t\t#\n# Volume: {screen.CurrentVolume} \t\t#\n# Channel: {screen.getCurrentChannel()} \t\t#\n# Mute: {screen.Mute} \t\t#\n# Settings: {screen.IsSetting} \t\t#\n# SmartMenu: {screen.IsSmartMenu} \t\t#\n# Brightness: {screen.Brightness} \t#\n# Contras: {screen.Contras} \t\t#\n#########################");
         }
 
         static void changeConsoleColor(bool isError)
@@ -59,7 +59,7 @@ namespace TVRemote2
                 changeConsoleColor(false);
 
 
-            } while (screen.getPower());
+            } while (screen.Power);
 
         }
 
