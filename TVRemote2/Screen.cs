@@ -173,6 +173,31 @@ namespace TVRemote2
         /*
          * TV Remote receiver
          */
+        enum buttons
+        {
+            power,
+            volumeUp,
+            volumeDown,
+            channelUp,
+            channelDown,
+            setChannel,
+            mute,
+            settings,
+            smartMenu,
+
+            increaseBrightness = 70,
+            decreaseBrightness,
+            increaseContras,
+            decreaseContras,
+            settingBack,
+
+            netflix = 80,
+            hulu,
+            primeVideo,
+            youTube,
+            smartMenuBack
+        }
+
         public void receiver(string button)
         {
             switch (button)
